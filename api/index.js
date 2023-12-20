@@ -22,3 +22,15 @@ App.listen(process.env.PORT,()=>{
 
 App.use("/api/users", userRouter)
 App.use("/api/auth", authRouter)
+
+
+App.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal server error"
+
+    return res.status(statusCode).json({
+        success: false,
+        statusCode,
+        message
+    })
+})
