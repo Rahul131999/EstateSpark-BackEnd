@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv'
 import userRouter from "./routes/user.route.js"
 import authRouter from "./routes/auth.route.js"
+import cors from "cors"
 
 dotenv.config()
 
@@ -15,6 +16,8 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 const App = express();
 
 App.use(express.json());
+
+App.use(cors())
 
 App.listen(process.env.PORT,()=>{
     console.log("server is up on 3000!!");
