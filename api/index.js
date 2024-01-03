@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import userRouter from "./routes/user.route.js"
 import authRouter from "./routes/auth.route.js"
 import cors from "cors"
+import cookieParser from "cookie-parser";
 
 dotenv.config()
 
@@ -18,6 +19,8 @@ const App = express();
 App.use(express.json());
 
 App.use(cors())
+
+App.use(cookieParser());
 
 App.listen(process.env.PORT,()=>{
     console.log("server is up on 3000!!");
